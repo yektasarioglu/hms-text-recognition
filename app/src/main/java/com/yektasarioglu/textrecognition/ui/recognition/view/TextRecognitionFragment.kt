@@ -58,6 +58,7 @@ class TextRecognitionFragment : BaseFragment<FragmentTextRecognitionBinding, Tex
             val image = ImagePicker.getFirstImageOrNull(data)
             viewBinding.apply {
                 val drawable = image.uri.toDrawable(this@TextRecognitionFragment.activity as Context)
+                viewModel.initializeTextAnalyzer(isNetworkConnected)
                 viewModel.analyzeBitmap(drawable.toBitmap())
             }
         }
@@ -70,28 +71,14 @@ class TextRecognitionFragment : BaseFragment<FragmentTextRecognitionBinding, Tex
         onRequestPermissionsResult(requestCode, grantResults)
     }
 
-
-    override fun onNetworkAvailable() {
-        super.onNetworkAvailable()
-        viewModel.initializeTextAnalyzer(isNetworkConnected = true)
-    }
-
-    override fun onNetworkUnavailable() {
-        super.onNetworkUnavailable()
-        viewModel.initializeTextAnalyzer(isNetworkConnected = false)
-    }
-
     private fun setupUI() {
         viewBinding.apply {
             scanFromGalleryTextView.setOnClickListener { askImageFromUser() }
-            scanTextView.setOnClickListener {
-                viewModel.analyzeStream()
-            }
+            scanTextView.setOnClickListener { viewModel.analyzeStream() }
         }
     }
 
     private fun initialize() {
-        viewModel.initializeTextAnalyzer(isNetworkConnected = false)
         startCameraWithPermissionCheck()
     }
 

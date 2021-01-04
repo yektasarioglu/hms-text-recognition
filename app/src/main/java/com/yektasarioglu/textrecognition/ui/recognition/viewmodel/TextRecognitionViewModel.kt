@@ -49,7 +49,7 @@ class TextRecognitionViewModel @ViewModelInject constructor(private val textReco
             textRecognizer.analyzeStream {
                 it.forEach { _, value ->
                     Timber.d("stringValue is ${value?.stringValue}")
-                    outputLiveData.value = value?.stringValue
+                    outputLiveData.postValue(value?.stringValue)
 
                     value?.contents?.forEachIndexed { index, element ->
                         Timber.d("[$index] is ${element.stringValue}")

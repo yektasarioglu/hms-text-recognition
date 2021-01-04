@@ -13,6 +13,7 @@ import com.huawei.hms.mlsdk.text.MLLocalTextSetting
 import com.huawei.hms.mlsdk.text.MLRemoteTextSetting
 import com.huawei.hms.mlsdk.text.MLText
 import com.huawei.hms.mlsdk.text.MLTextAnalyzer
+
 import com.yektasarioglu.textrecognition.huawei.LensEnginePreview
 
 import timber.log.Timber
@@ -101,8 +102,7 @@ class TextRecognizer @Inject constructor() {
             .setBorderType(MLRemoteTextSetting.ARC)
             .create()
 
-        analyzer =
-            MLAnalyzerFactory.getInstance().getRemoteTextAnalyzer(setting as? MLRemoteTextSetting)
+        analyzer = MLAnalyzerFactory.getInstance().getRemoteTextAnalyzer(setting as? MLRemoteTextSetting)
     }
 
     private fun initializeDeviceTextAnalyzer(language: String) {

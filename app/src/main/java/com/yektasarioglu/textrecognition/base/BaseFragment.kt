@@ -23,6 +23,8 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel> : Fragment() {
 
     private var dialog: Dialog? = null
 
+    protected var isNetworkConnected = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,8 +50,8 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel> : Fragment() {
         val connectivityManager = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         val networkCallback = object : ConnectivityManager.NetworkCallback() {
-            override fun onAvailable(network: Network) { onNetworkAvailable() }
-            override fun onLost(network: Network) { onNetworkUnavailable() }
+            override fun onAvailable(network: Network) { isNetworkConnected = true }
+            override fun onLost(network: Network) { isNetworkConnected = false }
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -63,6 +65,4 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel> : Fragment() {
         }
     }
 
-    open fun onNetworkAvailable() {}
-    open fun onNetworkUnavailable() {}
 }
