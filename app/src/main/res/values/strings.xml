@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Text Recognition</string>
+    <string name="recognize_from_gallery">Recognize from gallery</string>
+    <string name="text_recognition">Text Recognition</string>
+    <string name="start_recognition">Start Recognition</string>
+</resources>
