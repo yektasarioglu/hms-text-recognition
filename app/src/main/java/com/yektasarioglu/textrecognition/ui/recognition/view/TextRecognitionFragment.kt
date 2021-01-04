@@ -73,12 +73,12 @@ class TextRecognitionFragment : BaseFragment<FragmentTextRecognitionBinding, Tex
 
     override fun onNetworkAvailable() {
         super.onNetworkAvailable()
-        viewModel.initializeImageAnalyzer(isNetworkConnected = true)
+        viewModel.initializeTextAnalyzer(isNetworkConnected = true)
     }
 
     override fun onNetworkUnavailable() {
         super.onNetworkUnavailable()
-        viewModel.initializeImageAnalyzer(isNetworkConnected = false)
+        viewModel.initializeTextAnalyzer(isNetworkConnected = false)
     }
 
     private fun setupUI() {
@@ -86,26 +86,12 @@ class TextRecognitionFragment : BaseFragment<FragmentTextRecognitionBinding, Tex
             scanFromGalleryTextView.setOnClickListener { askImageFromUser() }
             scanTextView.setOnClickListener {
                 viewModel.analyzeStream()
-                /*receiptView.brandName = "Kahve Dunyasi"
-                receiptView.categoryBitmap = ContextCompat.getDrawable(activity as FragmentActivity, R.drawable.category_coffee)?.toBitmap()
-                receiptView.configureDate(date = "05/12/2020")
-                receiptView.amount = 1503.2f
-                receiptView.vat = 35.99f
-                receiptView.total = 1503.2f
-                receiptView.visibility = View.VISIBLE
-
-                receiptView.addReceiptItem(2, "Cappucino", 20.99f)
-                receiptView.addReceiptItem(4, "Filter Coffee", 9.56f)
-                receiptView.addReceiptItem(6, "Xmas Mug", 20.99f)
-                receiptView.addReceiptItem(8, "Bodum Aeropress", 35.99f)*/
             }
-
-
         }
     }
 
     private fun initialize() {
-        viewModel.initializeImageAnalyzer(isNetworkConnected = false)
+        viewModel.initializeTextAnalyzer(isNetworkConnected = false)
         startCameraWithPermissionCheck()
     }
 

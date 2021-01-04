@@ -29,11 +29,11 @@ class TextRecognizer @Inject constructor() {
     private var lensEngine: LensEngine? = null
     private lateinit var ocrDetectorProcessor: OcrDetectorProcessor
 
-    fun initializeImageAnalyzer(isNetworkConnected: Boolean = false, textLanguage: TextLanguage) {
+    fun initializeTextAnalyzer(isNetworkConnected: Boolean = false, textLanguage: TextLanguage) {
         if (isNetworkConnected)
-            initializeCloudImageAnalyzer(listOf(textLanguage.languageCode))
+            initializeCloudTextAnalyzer(listOf(textLanguage.languageCode))
         else
-            initializeDeviceImageAnalyzer(textLanguage.languageCode)
+            initializeDeviceTextAnalyzer(textLanguage.languageCode)
     }
 
     fun initializeStreamAnalyzer(context: Context) {
@@ -88,7 +88,7 @@ class TextRecognizer @Inject constructor() {
         lensEngine?.release()
     }
 
-    private fun initializeCloudImageAnalyzer(supportedLanguageList: List<String>) {
+    private fun initializeCloudTextAnalyzer(supportedLanguageList: List<String>) {
         Timber.d("On-Cloud analyzer initialized !!")
 
         setting = MLRemoteTextSetting.Factory() // Set the on-cloud text detection mode.
@@ -105,7 +105,7 @@ class TextRecognizer @Inject constructor() {
             MLAnalyzerFactory.getInstance().getRemoteTextAnalyzer(setting as? MLRemoteTextSetting)
     }
 
-    private fun initializeDeviceImageAnalyzer(language: String) {
+    private fun initializeDeviceTextAnalyzer(language: String) {
         Timber.d("On-Device analyzer initialized !!")
 
         setting = MLLocalTextSetting.Factory()

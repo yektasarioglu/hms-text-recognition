@@ -20,8 +20,8 @@ class TextRecognitionViewModel @ViewModelInject constructor(private val textReco
 
     private var isCameraStarted: Boolean = false
 
-    fun initializeImageAnalyzer(isNetworkConnected: Boolean) {
-        textRecognizer.initializeImageAnalyzer(isNetworkConnected, TextLanguage.TURKISH)
+    fun initializeTextAnalyzer(isNetworkConnected: Boolean) {
+        textRecognizer.initializeTextAnalyzer(isNetworkConnected, TextLanguage.TURKISH)
     }
 
     fun initializeStreamAnalyzer(context: Context) {
