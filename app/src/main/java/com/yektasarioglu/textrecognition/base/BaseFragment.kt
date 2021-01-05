@@ -1,6 +1,5 @@
 package com.yektasarioglu.textrecognition.base
 
-import android.app.Dialog
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
@@ -21,8 +20,6 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel> : Fragment() {
     protected abstract val viewBinding: VB
     protected abstract val viewModel: VM
 
-    private var dialog: Dialog? = null
-
     protected var isNetworkConnected = false
 
     override fun onCreateView(
@@ -34,16 +31,6 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleInternetConnectivity()
-    }
-
-    fun isDarkModeEnabled() = (activity as BaseActivity<*, *>).isDarkModeEnabled()
-
-    fun switchTheme() = (activity as BaseActivity<*, *>).switchTheme()
-
-    protected fun hideLoading() {
-        dialog?.let { dialog ->
-            dialog.dismiss()
-        }
     }
 
     private fun handleInternetConnectivity() {
